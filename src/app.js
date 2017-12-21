@@ -47,7 +47,9 @@ const cm = CodeMirror.fromTextArea(document.querySelector('#app'), {
 });
 
 
-const imageThumbnail = widgets.createType({
+const manager = widgets.createManager(cm);
+
+manager.enable(widgets.createType({
 	mixins: [
 		widgets.mixins.re(/!\[(.*?)\]\((.*?)\)/g, match => {
 			return {
@@ -78,7 +80,4 @@ const imageThumbnail = widgets.createType({
 		});
 		return img;
 	},
-});
-
-const manager = widgets.createManager(cm);
-manager.enable(imageThumbnail);
+}));
