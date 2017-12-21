@@ -1,4 +1,5 @@
 import CodeMirror from 'codemirror';
+import widgets from 'codemirror-widgets';
 
 import _ from 'codemirror/lib/codemirror.css';
 import _ from 'codemirror/mode/gfm/gfm.js';
@@ -45,34 +46,26 @@ const cm = CodeMirror.fromTextArea(document.querySelector('#app'), {
 	lineWrapping: true,
 });
 
-function insertThumbnail(cm, change) {
-	var line = 0;
-	cm.eachLine(x => {
-		if (!x.styles) {
-			return;
-		}
 
-		line += 1;
-		let addr = null;
-		for (var i=1; i<x.styles.length-1; i+=2) {
-			console.log(x.styles[i+1] && x.styles[i+1].split(' '));
-			if (x.styles[i+1] && x.styles[i+1].split(' ').includes('blob-image-data')) {
-				if (addr === null) {
-					addr = 'data:' + x.text.slice(x.styles[i-2], x.styles[i]);
-				} else {
-					addr += x.text.slice(x.styles[i-2], x.styles[i]);
-				}
-			} else if (addr !== null) {
-				const el = document.createElement('img');
-				el.src = addr;
-				el.class = 'cm-image-thumbnail';
-				cm.addLineWidget(line, el);
-				addr = null;
-			}
-		}
-	});
-}
+const imageThumbnail = widgets.createType({
+	mixins: [
+		widgets.mixins.re(/!\[(.*?)\]\((.*?)\)/g, match => {
+			return {
+				props: {
+					alt: match[1],
+					src: match[2],
+				},
+			};
+		}),
+	],
+	createElement: function(widget) {
+		const img = document.createElement('img');
+		img.src = widget.props.src;
+		img.alt = widget.props.alt;
+		img.title = widget.props.alt;
+		return img;
+	},
+});
 
-cm.on('change', insertThumbnail);
-
-insertThumbnail(cm, null);
+const manager = widgets.createManager(cm);
+manager.enable(imageThumbnail);

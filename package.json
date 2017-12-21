@@ -5,6 +5,7 @@
   "main": "app.js",
   "dependencies": {
     "codemirror": "^5.32.0",
+    "codemirror-widgets": "^1.4.2",
     "css-loader": "^0.28.7",
     "file-loader": "^1.1.6",
     "webpack": "^3.10.0",
