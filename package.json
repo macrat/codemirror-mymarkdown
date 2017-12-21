@@ -1,0 +1,20 @@
+{
+  "name": "test",
+  "version": "1.0.0",
+  "description": "",
+  "main": "app.js",
+  "dependencies": {
+    "codemirror": "^5.32.0",
+    "css-loader": "^0.28.7",
+    "file-loader": "^1.1.6",
+    "webpack": "^3.10.0",
+    "webpack-dev-server": "^2.9.7"
+  },
+  "devDependencies": {},
+  "scripts": {
+    "start": "`npm bin`/webpack-dev-server",
+    "build": "`npm bin`/webpack"
+  },
+  "author": "",
+  "license": "ISC"
+}
