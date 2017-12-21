@@ -1,19 +1,17 @@
 const path = require('path');
 const webpack = require('webpack');
+const HtmlWebpackPlugin = require('html-webpack-plugin');
 
 
 module.exports = {
 	context: path.join(__dirname, 'src'),
-	entry: {
-		app: './app.js',
-		html: './index.html',
-	},
+	entry: './app.js',
 	devServer: {
 		contentBase: 'build',
 		port: 3000,
 	},
 	output: {
-		filename: '[name].js',
+		filename: 'app.js',
 		path: path.join(__dirname, 'build'),
 	},
 	module: {
@@ -22,11 +20,12 @@ module.exports = {
 				test: /\.css$/,
 				loader: 'css-loader',
 			},
-			{
-				test: /\.html$/,
-				loader: 'file-loader?name=[name].[ext]',
-			},
 		],
 	},
+	plugins: [
+		new HtmlWebpackPlugin({
+			template: './index.html',
+		}),
+	],
 	devtool: '#eval-source-map',
 };
