@@ -6,16 +6,18 @@
   "dependencies": {
     "codemirror": "^5.32.0",
     "codemirror-widgets": "github:macrat/codemirror-widgets#master",
-    "css-loader": "^0.28.7",
-    "file-loader": "^1.1.6",
-    "html-webpack-plugin": "^2.30.1",
-    "webpack": "^3.10.0",
-    "webpack-dev-server": "^2.9.7"
+    "css-loader": "^2.0.1",
+    "file-loader": "^2.0.0",
+    "html-webpack-plugin": "^3.2.0",
+    "webpack": "^4.27.1",
+    "webpack-dev-server": "^3.1.10"
   },
-  "devDependencies": {},
+  "devDependencies": {
+    "webpack-cli": "^3.1.2"
+  },
   "scripts": {
     "start": "`npm bin`/webpack-dev-server",
-    "build": "`npm bin`/webpack"
+    "build": "`npm bin`/webpack --mode production"
   },
   "author": "",
   "license": "ISC"

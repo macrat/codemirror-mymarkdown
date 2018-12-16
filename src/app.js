@@ -1,10 +1,10 @@
 import CodeMirror from 'codemirror';
 import widgets from 'codemirror-widgets';
 
-import _ from 'codemirror/lib/codemirror.css';
-import _ from 'codemirror/mode/gfm/gfm.js';
+import 'codemirror/lib/codemirror.css';
+import 'codemirror/mode/gfm/gfm.js';
 
-import _ from 'codemirror/addon/mode/overlay.js';
+import 'codemirror/addon/mode/overlay.js';
 
 
 CodeMirror.defineMode('mymark', function(config, parserConfig) {

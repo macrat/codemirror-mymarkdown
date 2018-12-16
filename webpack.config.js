@@ -15,12 +15,10 @@ module.exports = {
 		path: path.join(__dirname, 'build'),
 	},
 	module: {
-		loaders: [
-			{
-				test: /\.css$/,
-				loader: 'css-loader',
-			},
-		],
+		rules: [{
+			test: /\.css$/,
+			loader: 'css-loader',
+		}],
 	},
 	plugins: [
 		new HtmlWebpackPlugin({
